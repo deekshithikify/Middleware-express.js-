@@ -13,26 +13,38 @@ app.set("view engine", "ejs");
 
 
 // app.use (function (req, res, next) {
-//   console.log('LOGGED')                           //global Middleware
+//   console.log('LOGGED')                              //global Middleware
 //   next()
 // });
 
 
 
 // app.use ("/about",function (req, res, next) {
-//   console.log('LOGGED')                           //local Middleware
+//   console.log('LOGGED')                              //local Middleware
 //   next()
 // });
 
+
+// app.use("/about", function (req, res, next) {
+//   if(true){
+//     res.redirect("/")
+//   }
+//   console.log("LOGGED");
+//   next();
+// })
+
+
 app.use("/about", function (req, res, next) {
-
-  if(true){
-    res.redirect("/")
-  }
-
   console.log("LOGGED");
-  next();
-})
+
+  if(req.queery.name === "Coding Utsava"){
+    next();
+  }
+ else{
+  res.send("you are not allowed")
+ }
+});
+
 
 
 
